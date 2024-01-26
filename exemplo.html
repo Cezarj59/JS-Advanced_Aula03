@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <label for="">Nota 1</label>
+        <input type="text" name="nota1" id="id-nota1">
+        <br>
+
+        <label for="">Nota 2</label>
+        <input type="text" name="nota2" id="id-nota2">
+
+        <br>
+        <br>
+
+        <button onclick="somarValoresJquery()">Somar</button>
+        <button onclick="multiplicarValoresJquery()">Multiplicar</button>
+        <button onclick="subtrairValoresJquery()">Subtrair</button>
+        <button onclick="dividirValoresJquery()">Dividir</button>
+
+        <br>
+        <br>
+        <label for="">Resultado</label>
+        <input type="text" name="resultado" id="id-resultado">
+        <br>
+
+        <p id="id-paragrafo">...</p>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        function somarValores() {
+            let nota1 = parseFloat(document.getElementById("id-nota1").value);
+            let nota2 = parseFloat(document.getElementById("id-nota2").value);
+            let resultado = nota1 + nota2;
+
+            document.getElementById("id-resultado").value = resultado;
+
+            document.getElementById("id-paragrafo").innerHTML = resultado;
+        }
+
+
+        function somarValoresJquery() {
+            let nota1 = parseFloat($("#id-nota1").val());
+            let nota2 = parseFloat($("#id-nota2").val());
+            let resultado = nota1 + nota2;
+
+            $("#id-resultado").val(resultado);
+            $("#id-paragrafo").html("nota 1 + nota 2 = " + resultado);
+        }
+
+        function multiplicarValoresJquery() {
+            let nota1 = parseFloat($("#id-nota1").val());
+            let nota2 = parseFloat($("#id-nota2").val());
+            let resultado = nota1 * nota2;
+
+            $("#id-resultado").val(resultado);
+            $("#id-paragrafo").html("nota 1 x nota 2 = " + resultado);
+        }
+
+        function subtrairValoresJquery() {
+            let nota1 = parseFloat($("#id-nota1").val());
+            let nota2 = parseFloat($("#id-nota2").val());
+            let resultado = nota1 - nota2;
+
+            $("#id-resultado").val(resultado);
+            $("#id-paragrafo").html("nota 1 - nota 2 = " + resultado);
+        }
+
+        function dividirValoresJquery() {
+            let nota1 = parseFloat($("#id-nota1").val());
+            let nota2 = parseFloat($("#id-nota2").val());
+            let resultado = nota1 / nota2;
+
+            $("#id-resultado").val(resultado);
+            $("#id-paragrafo").html("nota 1 &divide; nota 2 = " + resultado);
+        }
+
+    </script>
+</body>
+
+</html>
