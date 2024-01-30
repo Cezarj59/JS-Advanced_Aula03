@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora com jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculadora {
+            padding: 20px;
+            background-color: #3d3c3c;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 350px;
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 20px;
+            text-align: right;
+            padding: 5px;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            width: 24%;
+            height: 50px;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button.operador {
+            background-color: #f4a742;
+            color: #fff;
+        }
+
+        button#calcular {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        button#clear {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        button:hover {
+            background-color: #ddd;
+            border: black solid 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculadora">
+        <input type="text" id="display" readonly>
+        <button id="clear">C</button>
+        <br>
+        <button class="numero">7</button>
+        <button class="numero">8</button>
+        <button class="numero">9</button>
+        <button class="operador">/</button>
+        <br>
+        <button class="numero">4</button>
+        <button class="numero">5</button>
+        <button class="numero">6</button>
+        <button class="operador">*</button>
+        <br>
+        <button class="numero">1</button>
+        <button class="numero">2</button>
+        <button class="numero">3</button>
+        <button class="operador">-</button>
+        <br>
+        <button class="operador">.</button>
+        <button class="numero">0</button>
+        <button id="calcular">=</button>
+        <button class="operador">+</button>
+    </div>
+
+    <script>
+
+
+        // Este bloco de código será executado quando o documento estiver totalmente carregado.
+        $(document).ready(function () {
+            // Declaração de uma variável que armazenará a expressão a ser calculada.
+            var visorInput = "";
+
+            // Quando um botão com a classe "numero" é clicado...
+            $(".numero").click(function () {
+                // Obtém o valor do botão clicado.
+                var value = $(this).text();
+
+                // Adiciona o valor à expressão atual.
+                visorInput += value;
+
+                // Atualiza o campo de exibição com a expressão atualizada.
+                $("#display").val(visorInput);
+            });
+
+            // Quando um botão com a classe "operador" é clicado...
+            $(".operador").click(function () {
+                // Obtém o operador do botão clicado.
+                var operador = $(this).text();
+
+                // Adiciona o operador à expressão atual, separado por espaços.
+                visorInput += " " + operador + " ";
+
+                // Atualiza o campo de exibição com a expressão atualizada.
+                $("#display").val(visorInput);
+            });
+
+            // Quando o botão com o ID "clear" é clicado...
+            $("#clear").click(function () {
+                // Limpa a expressão atual.
+                visorInput = "";
+
+                // Limpa o campo de exibição.
+                $("#display").val("");
+            });
+
+            // Quando o botão com o ID "calcular" é clicado...
+            $("#calcular").click(function () {
+                try {
+                    // Avalia a expressão usando a função eval() e atualiza a expressão atual com o resultado.
+                    visorInput = eval(visorInput);//avalia uma string como código JavaScript e executa esse código
+
+                    // Atualiza o campo de exibição com o resultado da expressão.
+                    $("#display").val(visorInput);
+                } catch (error) {
+                    // Se ocorrer um erro durante a avaliação, exibe "Error" no campo de exibição.
+                    $("#display").val("Error");
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
